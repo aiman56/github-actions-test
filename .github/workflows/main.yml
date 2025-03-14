@@ -1,22 +1,19 @@
 name: Student Code Test
 
-on: [push, pull_request]  # Run when pushing or making a PR
+on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: self-hosted  # Use GitHub’s Ubuntu runner
+    runs-on: self-hosted  # Running on your machine
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
+      - name: Use System Python (Skip Setup)
+        run: python --version  # Check if Python is already installed
 
-      - name: Install dependencies (if any)
-        run: |
-          pip install -r requirements.txt || true  # Ignore if file doesn't exist
+      - name: Install dependencies
+        run: pip install -r requirements.txt || true
 
       - name: Run Python Tests
         run: python main.py
