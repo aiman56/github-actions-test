@@ -1,0 +1,22 @@
+name: Student Code Test
+
+on: [push, pull_request]  # Run when pushing or making a PR
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use GitHub’s Ubuntu runner
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies (if any)
+        run: |
+          pip install -r requirements.txt || true  # Ignore if file doesn't exist
+
+      - name: Run Python Tests
+        run: python test_main.py
