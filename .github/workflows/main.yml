@@ -19,4 +19,4 @@ jobs:
           pip install -r requirements.txt || true  # Ignore if file doesn't exist
 
       - name: Run Python Tests
-        run: python test_main.py
+        run: python main.py
