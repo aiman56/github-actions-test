@@ -1,19 +1,19 @@
 name: Student Code Test
 
-on: [push, pull_request]
+on: [push, pull_request]  # Run on every push or pull request
 
 jobs:
   test:
-    runs-on: self-hosted  # Running on your machine
+    runs-on: self-hosted  # Runs on your self-hosted runner
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use System Python (Skip Setup)
-        run: /usr/bin/python3 --version 
+      - name: Use System Python
+        run: python3 --version  # Ensure Python is available
 
       - name: Install dependencies
-        run: pip install -r requirements.txt || true
+        run: python3 -m pip install -r requirements.txt || true  # Install dependencies if needed
 
-      - name: Run Python Tests
-        run: python3 main.py
+      - name: Run Tests
+        run: python3 -m unittest test_main.py  # Fails if tests fail
