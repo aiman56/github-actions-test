@@ -4,7 +4,7 @@ on: [push, pull_request]  # Run when pushing or making a PR
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Use GitHub’s Ubuntu runner
+    runs-on: self-hosted  # Use GitHub’s Ubuntu runner
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
